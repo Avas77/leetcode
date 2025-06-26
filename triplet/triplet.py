@@ -1,6 +1,18 @@
+# i < j < k
+# nums[i] < nums[j] < nums[k]
+
 class Solution(object):
     def increasingTriplet(self, nums):
-        for i in range(len(nums)):
-            
+        first = float('inf')
+        second = float('inf')
+        for n in nums:
+            if n <= first:
+                first = n
+            elif n <= second:
+                second = n
+            else:
+                return True
+        return False
+    
 sol = Solution()
-print(sol.increasingTriplet([20,100,10,12,5,13]))
+print(sol.increasingTriplet([5,4,3,2,1]))

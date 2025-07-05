@@ -1,13 +1,11 @@
-class Solution:
-    def moveZeroes(self, nums: list[int]) -> None:
-        left = 0
-        for right in range(len(nums)):
-            if nums[right] != 0:
-                nums[right], nums[left] = nums[left], nums[right]
-                left += 1
+class Solution(object):
+    def moveZeroes(self, nums):
+        zero_index = 0
+        for index in range(len(nums)):
+            if nums[index] != 0:
+                nums[index], nums[zero_index] = nums[zero_index], nums[index]
+                zero_index += 1
         return nums
 
-                    
 sol = Solution()
-print(sol.moveZeroes([0,1,0,3,12]))
-        
+sol.moveZeroes([0,1])

@@ -4,14 +4,20 @@
 
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
-        result = []
-        for i in range(len(nums)):
-            count = 0
-            for j in range(i + 1, len(nums)):
-                if nums[i] < nums[j]:
-                    count += 1
-            result.append(count)
-        print(result)
+        output = [1] * len(nums)
 
+        #Left Pass: Get the products of the every element on the left of the current index element
+        left = 1
+        for i in range(len(nums)):
+            output[i] *= left
+            left *= nums[i]
+        
+        #Right Pass: Multiply the left products with the right element from the current position
+        right = 1
+        for i in range(len(nums) - 1, -1, -1):
+            output[i] *= right
+            right *= nums[i]
+        return output
+        
 sol = Solution()
-sol.productExceptSelf([1, 2, 3, 4])
+print(sol.productExceptSelf([1, 2, 3, 4]))
